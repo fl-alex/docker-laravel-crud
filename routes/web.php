@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +20,17 @@ Route::get('/app', function () {
 });
 
 Route::resources([
-    'model1' => \App\Http\Controllers\Model1Controller::class,
-    'model2' => \App\Http\Controllers\Model2Controller::class,
+    'Model1' => \App\Http\Controllers\Model1Controller::class,
+    'Model2' => \App\Http\Controllers\Model2Controller::class,
+    'companies' => \App\Http\Controllers\CompanyController::class,
+    'workers' =>\App\Http\Controllers\WorkerController::class
 ]);
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('add-post', [\App\Http\Controllers\PostController::class, 'index']);
+Route::post('store-form', [\App\Http\Controllers\PostController::class, 'store']);
+Route::get('make_backup', [\App\Http\Controllers\ServiceController::class, 'make_backup'])->name('make_backup');

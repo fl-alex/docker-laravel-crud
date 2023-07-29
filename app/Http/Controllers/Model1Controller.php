@@ -1,22 +1,31 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Requests\StoreModel1Request;
-use App\Http\Requests\UpdateModel1Request;
 use App\Models\Model1;
+use Illuminate\Http\Request;
+
 
 class Model1Controller extends Controller
 {
+
+
+    public function get_controller_name(){
+
+        $routeArray = app('request')->route()->getAction();
+        $controllerAction = class_basename($routeArray['controller']);
+        return trim(substr(explode('@', $controllerAction)[0],0,-10));
+
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $routeArray = app('request')->route()->getAction();
-        $controllerAction = class_basename($routeArray['controller']);
-        $controller = explode('@', $controllerAction)[0];
-            return view('model1', ['name' => 'James', 'controllername'=>trim(substr($controller,0,-10))]);
+
+        $model1 = Model1::orderBy('id','desc')->paginate(2);
+        return view('Model1', ['data'=>$model1]);
+
     }
 
     /**
@@ -24,16 +33,25 @@ class Model1Controller extends Controller
      */
     public function create()
     {
-
-        return view('model1create', ['modelname' => 'James-create']);
+         return view('model1create',['modelname' => 'James-create', 'controllername'=>$this->get_controller_name()]);
     }
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function store(StoreModel1Request $request)
+    public function store(Request $request)
     {
-        //
+
+        $model1 = new Model1();
+        $model1->name = $request->input('name');
+        $model1->description = $request->input('description');
+        $model1->save();
+
+        return redirect()->route('Model1.index');
+
     }
 
     /**

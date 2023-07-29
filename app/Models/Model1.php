@@ -9,6 +9,19 @@ class Model1 extends Model
 {
     use HasFactory;
 
+    protected $table = 'model1';
+
+    /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'name' => '',
+        'description' => '',
+    ];
+
+
     /**
      * Get all related records from Model2
      */
