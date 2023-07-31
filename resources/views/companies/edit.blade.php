@@ -66,9 +66,10 @@
         </div>
     </form>
 <div class="mt-4">
-    <form action="{{ route('workers.create_from') }}" method="POST" >
-
-        <button type="submit" class="btn btn-primary ml-3">Submit</button>
+    <form action="{{ route('workers_from') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="text" value="{{$company->id}}" name="own_company">
+        <button type="submit" class="btn btn-success ml-3">Create worker from</button>
     </form>
 
     Subtable

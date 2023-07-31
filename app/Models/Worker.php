@@ -9,9 +9,9 @@ class Worker extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', '[_token]'];
+    protected $fillable = ['id', 'name', 'company_id' ,'[_token]'];
 
     public function company(){
-        $this->belongsTo(Company::class);
+        return $this->belongsTo(Company::class);
     }
 }

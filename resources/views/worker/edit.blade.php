@@ -18,7 +18,7 @@
                 <h2>Edit Worker</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('companies.index') }}" enctype="multipart/form-data">
+                <a class="btn btn-primary" href="{{ route('workers.index') }}" enctype="multipart/form-data">
                     Back</a>
             </div>
         </div>
@@ -34,9 +34,21 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Company Name:</strong>
+                    <strong>Worker Nam--e:</strong>
                     <input type="text" name="name" value="{{ $worker->name }}" class="form-control"
                            placeholder="Company name">
+                    <select name="company_id" id="company_id" class="form-control">
+                        <option value="0">Select company name</option>
+
+                        @foreach($company as $cmp)
+                            @if($cmp->id == $worker->company_id)
+                                <option value="{{$cmp->id}}" selected>{{$cmp->name}}</option>
+                            @else
+                                <option value="{{$cmp->id}}">{{$cmp->name}}</option>
+                            @endif
+                        @endforeach
+
+                    </select>
                     @error('name')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                     @enderror

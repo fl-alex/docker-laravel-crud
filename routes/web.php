@@ -34,3 +34,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('add-post', [\App\Http\Controllers\PostController::class, 'index']);
 Route::post('store-form', [\App\Http\Controllers\PostController::class, 'store']);
 Route::get('make_backup', [\App\Http\Controllers\ServiceController::class, 'make_backup'])->name('make_backup');
+Route::post('workers_from', [\App\Http\Controllers\WorkerController::class, 'create_from'])->name('workers_from');
+
+

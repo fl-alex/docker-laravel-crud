@@ -15,11 +15,11 @@ PASS=password
 #mysqldump --opt --protocol=TCP --user=${USER} --password=${PASS} --host=${DBSERVER} ${DATABASE} > ${FILE}
 
 # use this command for a database server on localhost. add other options if need be.
-docker exec lv-app-mysql-1 mysqldump --opt --user=${USER} --password=${PASS} --host=${DBSERVER} --no-tablespaces ${DATABASE} > ${FILE}
+docker exec ddbc32c6a774c8499f8156fe7592416a649bcc63d8bd9af5acf0dc27e4744efa-mysql-1 mysqldump --opt --user=${USER} --password=${PASS} --host=${DBSERVER} --no-tablespaces ${DATABASE} > ${FILE}
 
 # (4) gzip the mysql database dump file
 # gzip $FILE
 
 # (5) show the user the result
 # echo "${FILE}.gz was created:"
-ls -l ${FILE}.gz
+ls -l ${FILE}

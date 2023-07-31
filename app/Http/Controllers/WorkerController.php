@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Requests\StoreWorkerRequest;
 use App\Models\Company;
 use App\Models\Worker;
 use Illuminate\Http\Request;
@@ -28,7 +26,7 @@ class WorkerController extends Controller
     public function index(Request $request)
     {
         $routename = $this->get_my_routename($request);
-        $workers = Worker::orderBy('id','desc')->paginate(5);
+        $workers = Worker::with('Company')->orderBy('id','desc')->paginate(5);
         return view('worker.index', compact('workers', 'routename'));
     }
 
@@ -41,13 +39,42 @@ class WorkerController extends Controller
         return view('worker.create',compact('company'));
     }
 
+    public function create_from(Company $company, Request $request)
+    {
+        $company = $company::all();
+        $own_company = Company::all()->find($request->input('own_company'));
+        return view('worker.create_from',compact('company', 'own_company'));
+    }
+
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreWorkerRequest $request)
+    public function store(Request $request)
     {
-        //
+        //dd($request);
+
+        $request->validate([
+            'name' => 'required',
+            'company_id' => 'required',
+        ]);
+
+
+        $worker = new Worker([
+            'name' => $request->name
+        ]);
+        $company = Company::all()->find($request->company_id);
+
+        $company->workers()->save($worker);
+
+        return redirect()->route('workers.index')->with('success','Worler has been created successfully.');
     }
+
+
+
+
+
+
+
 
     /**
      * Display the specified resource.
@@ -62,7 +89,8 @@ class WorkerController extends Controller
      */
     public function edit(Worker $worker)
     {
-        return view('worker.edit',compact('worker'));
+        $company = Company::all();
+        return view('worker.edit',compact('worker', 'company'));
     }
 
     /**
@@ -72,7 +100,9 @@ class WorkerController extends Controller
     {
 
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'company_id' => 'required'
+
         ]);
 
         $worker->fill($request->post())->save();

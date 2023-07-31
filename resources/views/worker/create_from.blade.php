@@ -46,12 +46,8 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Worker Company:</strong>
-                        <select name="company_id" id="company_id" class="form-control">
-                            <option value="0">Select company name</option>
-                            @foreach($company as $cmp)
-                                    <option value="{{$cmp->id}}">{{$cmp->name}}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" name="company_name" id="company_name" class="form-control" value="{{$own_company->name}}" readonly>
+                        <input type="hidden" name="own_company" id="own_company" class="form-control" value="{{$own_company->id}}">
                     @error('email')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                     @enderror

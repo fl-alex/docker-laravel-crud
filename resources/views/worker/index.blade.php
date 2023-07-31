@@ -30,15 +30,19 @@
         <tr>
             <th>S.No</th>
             <th>Worker name</th>
+            <th>Company name</th>
 
             <th width="280px">Action</th>
         </tr>
         </thead>
         <tbody>
+
         @foreach ($workers as $worker)
             <tr>
                 <td>{{ $worker->id }}</td>
                 <td>{{ $worker->name }}</td>
+                <td>{{ $worker->company->name }}</td>
+
 
                 <td>
                     <form action="{{ route('workers.destroy',$worker->id) }}" method="Post">
