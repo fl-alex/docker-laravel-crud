@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>List workers</title>
+    <title>List of employees</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
 </head>
 <body>
@@ -13,10 +13,10 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>List workers</h2>
+                <h2>List of employees:</h2>
             </div>
             <div class="pull-right mb-2">
-                <a class="btn btn-success" href="{{ route('workers.create') }}"> Create Worker</a>
+                <a class="btn btn-success" href="{{ route('workers.create') }}"> Create employee</a>
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
         <thead>
         <tr>
             <th>S.No</th>
-            <th>Worker name</th>
+            <th>Employee name</th>
             <th>Company name</th>
 
             <th width="280px">Action</th>

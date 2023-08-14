@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('workers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignIdFor(\App\Models\Company::class);
+            $table->foreignIdFor(\App\Models\Company::class)
+                ->references('id')->on('companies')->onDelete('cascade');
             $table->timestamps();
         });
     }

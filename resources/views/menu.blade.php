@@ -1,8 +1,8 @@
 <script src="{{ asset('jquery.js') }}"></script>
 <span id="menu">
-    <a href="{{ route('companies.index') }}" id="companies">Company</a> |
-    <a href="{{ route('workers.index') }}" id="workers">Workers</a> |
-    <a href="{{ route('make_backup') }}" id="workers">Make BackUp</a> |
+    <a href="{{ route('companies.index') }}" id="companies">Companies</a> |
+    <a href="{{ route('workers.index') }}" id="workers">Employees</a> |
+
 </span>
 <hr style="box-shadow: darkolivegreen 1px 1px 1px 1px">
 

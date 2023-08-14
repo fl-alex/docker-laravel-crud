@@ -28,7 +28,7 @@ class CompanyController extends Controller
      */
     public function index(Request $request)
     {
-        $companies = Company::orderBy('id','desc')->paginate(5);
+        $companies = Company::orderBy('id','desc')->paginate(1);
         $routename = $this->get_my_routename($request);
         return view('companies.index', compact('companies', 'routename'));
 

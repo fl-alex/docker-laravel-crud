@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Edit Company Form - Laravel 9 CRUD Tutorial</title>
+    <title>Company parameters</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Edit Company</h2>
+                <h2>Company parameters</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('companies.index') }}" enctype="multipart/form-data">
@@ -65,14 +65,18 @@
             <button type="submit" class="btn btn-primary ml-3">Submit</button>
         </div>
     </form>
+    <hr style="height: 10px;">
 <div class="mt-4">
+    <hr style="box-shadow: darkolivegreen 1px 1px 1px 1px">
+    <div class="pull-left">
+        <h2>List of existing employees:</h2>
+    </div>
     <form action="{{ route('workers_from') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <input type="text" value="{{$company->id}}" name="own_company">
-        <button type="submit" class="btn btn-success ml-3">Create worker from</button>
-    </form>
+        <input type="hidden" value="{{$company->id}}" name="own_company">
+        <button type="submit" class="btn btn-success ml-3">Create a new worker for the company</button>
+    </form><br>
 
-    Subtable
     <table class="table table-bordered">
         <thead>
         <tr>

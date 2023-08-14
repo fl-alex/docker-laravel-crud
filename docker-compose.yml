@@ -56,7 +56,7 @@ services:
         image: phpmyadmin
         restart: always
         ports:
-            - 8081:80
+            - '8081:80'
         environment:
             - PMA_ARBITRARY=1
         volumes:

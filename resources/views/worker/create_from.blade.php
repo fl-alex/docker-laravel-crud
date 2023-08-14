@@ -31,7 +31,7 @@
             {{ session('status') }}
         </div>
     @endif
-    <form action="{{ route('workers.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('workers_store_from') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <strong>Worker Company:</strong>
                         <input type="text" name="company_name" id="company_name" class="form-control" value="{{$own_company->name}}" readonly>
-                        <input type="hidden" name="own_company" id="own_company" class="form-control" value="{{$own_company->id}}">
+                        <input type="hidden" name="company_id" id="company_id" class="form-control" value="{{$own_company->id}}">
                     @error('email')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                     @enderror

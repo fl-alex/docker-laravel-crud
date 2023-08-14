@@ -51,22 +51,41 @@ class WorkerController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
+        $request->validate([
+            'name' => 'required',
+            'company_id' => 'required',
+        ]);
+
+        $worker = new Worker([
+            'name' => $request->name
+        ]);
+        $company = Company::all()->find($request->company_id);
+        $company->workers()->save($worker);
+
+        return redirect()->route('workers.index')->with('success','Worler has been created successfully.');
+    }
+
+    public function store_from(Request $request)
+    {
+
+        print_r($request->name);
+        print_r($request->company_id);
+
 
         $request->validate([
             'name' => 'required',
             'company_id' => 'required',
         ]);
 
-
         $worker = new Worker([
             'name' => $request->name
         ]);
         $company = Company::all()->find($request->company_id);
-
         $company->workers()->save($worker);
 
-        return redirect()->route('workers.index')->with('success','Worler has been created successfully.');
+        //return redirect()->route('companies.edit')->with('success','Worker has been created successfully.');
+        //return view('companies.edit', compact('company','workers','controllername'));
+        return redirect()->route('companies.edit', [$request->company_id]);
     }
 
 
